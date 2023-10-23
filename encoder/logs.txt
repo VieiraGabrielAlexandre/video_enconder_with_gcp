@@ -1,0 +1,81 @@
+Building app
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 2.93kB done
+#1 DONE 0.0s
+
+#2 [internal] load .dockerignore
+#2 transferring context: 2B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/golang:1.14.6-alpine3.11
+#3 DONE 0.6s
+
+#4 [ 1/29] FROM docker.io/library/golang:1.14.6-alpine3.11@sha256:d6038185528257313e01c8dee9e277ca54bebb3bfe9c87b7cf42422dd3dfc10c
+#4 DONE 0.0s
+
+#5 [10/29] RUN pwd
+#5 CACHED
+
+#6 [16/29] RUN cat Bento4-SRC-1-5-0-615.zip
+#6 CACHED
+
+#7 [ 3/29] WORKDIR /tmp/bento4
+#7 CACHED
+
+#8 [ 7/29] RUN curl -O -s http://zebulon.bok.net/Bento4/source//Bento4-SRC-1-5-0-615.zip
+#8 CACHED
+
+#9 [12/29] RUN echo "BENTO4_CHECKSUM=5378dbb374343bc274981d6e2ef93bce0851bda1"
+#9 CACHED
+
+#10 [11/29] RUN sha1sum -b Bento4-SRC-1-5-0-615.zip
+#10 CACHED
+
+#11 [ 6/29] RUN echo "BENTO4_TYPE=SRC, BENTO4_VERSION=1-5-0-615, BENTO4_TARGET="
+#11 CACHED
+
+#12 [ 5/29] RUN curl -O -s http://zebulon.bok.net/Bento4/source//Bento4-SRC-1-5-0-615.zip
+#12 CACHED
+
+#13 [ 2/29] RUN apk add --update ffmpeg bash curl make
+#13 CACHED
+
+#14 [15/29] RUN ls -l
+#14 CACHED
+
+#15 [13/29] RUN sha1sum -b Bento4-SRC-1-5-0-615.zip
+#15 CACHED
+
+#16 [14/29] RUN echo "BENTO4_CHECKSUM=5378dbb374343bc274981d6e2ef93bce0851bda1"
+#16 CACHED
+
+#17 [ 9/29] RUN cat Bento4-SRC-1-5-0-615.zip
+#17 CACHED
+
+#18 [17/29] RUN sha1sum -b Bento4-SRC-1-5-0-615.zip
+#18 CACHED
+
+#19 [ 4/29] RUN apk add --update --upgrade curl python unzip bash gcc g++ scons
+#19 CACHED
+
+#20 [ 8/29] RUN ls -l
+#20 CACHED
+
+#21 [18/29] RUN echo "BENTO4_CHECKSUM=5378dbb374343bc274981d6e2ef93bce0851bda1"
+#21 CACHED
+
+#22 [19/29] RUN sha1sum -b Bento4-SRC-1-5-0-615.zip | grep -o "^5378dbb374343bc274981d6e2ef93bce0851bda1"
+#22 ERROR: process "/bin/sh -c sha1sum -b Bento4-${BENTO4_TYPE}-${BENTO4_VERSION}${BENTO4_TARGET}.zip | grep -o \"^$BENTO4_CHECKSUM\"" did not complete successfully: exit code: 1
+------
+ > [19/29] RUN sha1sum -b Bento4-SRC-1-5-0-615.zip | grep -o "^5378dbb374343bc274981d6e2ef93bce0851bda1":
+------
+Dockerfile:58
+--------------------
+  56 |     RUN echo "BENTO4_CHECKSUM=${BENTO4_CHECKSUM}"
+  57 |     
+  58 | >>> RUN sha1sum -b Bento4-${BENTO4_TYPE}-${BENTO4_VERSION}${BENTO4_TARGET}.zip | grep -o "^$BENTO4_CHECKSUM"
+  59 |     RUN mkdir -p ${BENTO4_PATH}
+  60 |     RUN unzip Bento4-${BENTO4_TYPE}-${BENTO4_VERSION}${BENTO4_TARGET}.zip -d ${BENTO4_PATH}
+--------------------
+ERROR: failed to solve: process "/bin/sh -c sha1sum -b Bento4-${BENTO4_TYPE}-${BENTO4_VERSION}${BENTO4_TARGET}.zip | grep -o \"^$BENTO4_CHECKSUM\"" did not complete successfully: exit code: 1
+Service 'app' failed to build : Build failed
